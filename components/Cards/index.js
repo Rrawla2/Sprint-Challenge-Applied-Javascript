@@ -22,11 +22,64 @@ const cardsContainer = document.querySelector('.cards-container')
 
 axios.get("https://lambda-times-backend.herokuapp.com/articles")
     .then(response => {
-        console.log(response)
+        //console.log(response)
+        response.data.articles.bootstrap.forEach(arrayItem => {
+            let newCard = createCard(arrayItem);
+            cardsContainer.appendChild(newCard);
+        })
     })
     .catch(error => {
         console.log("The data was not returned", error)
     })
+
+axios.get("https://lambda-times-backend.herokuapp.com/articles")
+    .then(response => {
+        //console.log(response)
+        response.data.articles.javascript.forEach(arrayItem => {
+            let newCard = createCard(arrayItem);
+            cardsContainer.appendChild(newCard);
+        })
+    })
+    .catch(error => {
+        console.log("The data was not returned", error)
+    })
+    
+axios.get("https://lambda-times-backend.herokuapp.com/articles")
+    .then(response => {
+        //console.log(response)
+        response.data.articles.jquery.forEach(arrayItem => {
+            let newCard = createCard(arrayItem);
+            cardsContainer.appendChild(newCard);
+        })
+    })
+    .catch(error => {
+        console.log("The data was not returned", error)
+    })
+
+axios.get("https://lambda-times-backend.herokuapp.com/articles")
+    .then(response => {
+        //console.log(response)
+        response.data.articles.node.forEach(arrayItem => {
+            let newCard = createCard(arrayItem);
+            cardsContainer.appendChild(newCard);
+        })
+    })
+    .catch(error => {
+        console.log("The data was not returned", error)
+    })
+
+axios.get("https://lambda-times-backend.herokuapp.com/articles")
+    .then(response => {
+        //console.log(response)
+        response.data.articles.technology.forEach(arrayItem => {
+            let newCard = createCard(arrayItem);
+            cardsContainer.appendChild(newCard);
+        })
+    })
+    .catch(error => {
+        console.log("The data was not returned", error)
+    })
+
 
 function createCard(newCard) {
     // create elements
@@ -45,8 +98,8 @@ function createCard(newCard) {
 
     // Assign content
     headline.textContent = newCard.headline;
-    author.textContent = newCard.author;
-    img.src = newCard.img;
+    author.textContent = newCard.authorName;
+    img.src = newCard.authorPhoto;
     spanAuthor.textContent = newCard.spanAuthor;
 
     // append child to parent element
@@ -57,12 +110,5 @@ function createCard(newCard) {
     author.appendChild(spanAuthor);
     imgContainer.appendChild(img);
     
-
-
-
-
-
-
-
     return card;
 }
