@@ -17,34 +17,52 @@
 // </div>
 //
 // Create a card for each of the articles and add the card to the DOM.
-// axios.get("https://lambda-times-backend.herokuapp.com/articles")
-//     .then(response => {
-//         console.log(response)
-//     })
-//     .catch(error => {
-//         console.log(error)
-//     })
 
-//     function createCard(data) {
+const cardsContainer = document.querySelector('.cards-container')
 
-//         const card = document.createElement('div');
-//         const headline = document.createElement('div');
-//         const author = document.createElement('div');
-//         const imgContainer = document.createElement('div');
-//         const img = document.createElement('img');
-//         const spanAuthor = document.createElement('span');
+axios.get("https://lambda-times-backend.herokuapp.com/articles")
+    .then(response => {
+        console.log(response)
+    })
+    .catch(error => {
+        console.log("The data was not returned", error)
+    })
 
-//         card.appendChild(headline)
-//         card.appendChild(author)
-//         author.appendChild(img-container)
-//         imgContainer.appendChild(img)
-//         imgContainer.appendChild(spanAuthor)
+function createCard(newCard) {
+    // create elements
+    const card = document.createElement('div');
+    const headline = document.createElement('div');
+    const author = document.createElement('div');
+    const imgContainer = document.createElement('div');
+    const img = document.createElement('img');
+    const spanAuthor = document.createElement('span');
 
-//         card.classList.add(card)
-//         headline.classList.add(headline)
-//         author.classList.add(author)
-//         imgContainer.classList.add(img-container)
-        
-//         img.src = 
+    // assign to classes
+    card.classList.add('card');
+    headline.classList.add('headline');
+    author.classList.add('author');
+    imgContainer.classList.add('img-container');
 
-//     }
+    // Assign content
+    headline.textContent = newCard.headline;
+    author.textContent = newCard.author;
+    img.src = newCard.img;
+    spanAuthor.textContent = newCard.spanAuthor;
+
+    // append child to parent element
+
+    card.appendChild(headline);
+    card.appendChild(author);
+    author.appendChild(imgContainer);
+    author.appendChild(spanAuthor);
+    imgContainer.appendChild(img);
+    
+
+
+
+
+
+
+
+    return card;
+}
